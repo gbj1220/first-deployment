@@ -1,26 +1,9 @@
 import React, { useState, useContext } from "react";
 import { TodoInputContext } from "../context/Context";
 import { Button, TextField } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  submitButton: {
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-  textField: {
-    "&>*": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-}));
 
 function TodoInput() {
-  const classes = useStyles();
-
-  const { addTodo, todoArray } = useContext(TodoInputContext);
+  const { addTodo, clearItems } = useContext(TodoInputContext);
   const [todo, setTodo] = useState("");
 
   const handleOnSubmit = (e) => {
@@ -29,22 +12,29 @@ function TodoInput() {
     setTodo("");
   };
   return (
-    <div style={{ textAlign: "center" }}>
+    <div>
       <form action='submit' onSubmit={handleOnSubmit}>
-        <div>
-          <TextField
+        <div className='buttons'>
+          <input
+            className='input-field'
             id='outlined-basic'
-            label='Add Some Todo Items'
+            placeholder='Add Some Todo Items'
             variant='outlined'
             type='text'
             value={todo}
             onChange={(e) => setTodo(e.target.value)}
           />
-        </div>
-        <div className={classes.submitButton}>
-          <Button type='submit' variant='contained' color='primary'>
-            Add Todo
-          </Button>
+
+          <span>
+            <button
+              id='add-btn'
+              type='submit'
+              variant='contained'
+              color='primary'
+            >
+              Add Todo
+            </button>
+          </span>
         </div>
       </form>
     </div>
