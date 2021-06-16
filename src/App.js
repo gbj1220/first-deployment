@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import TodoInput from "./components/TodoInput";
-import TodoList from "./components/TodoList/TodoList";
-import Header from "./components/Header";
+import TodoInput from "./components/Input/TodoInput";
+import TodoList from "./components/List/TodoList";
+import Header from "./components/Header/Header";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import teal from "@material-ui/core/colors/teal";
 import yellow from "@material-ui/core/colors/yellow";
 
-import { TodoInputContext, TodoListContext } from "./context/Context";
+import {
+  TodoInputContext,
+  TodoListContext,
+} from "./components/context/Context";
 
 const theme = createMuiTheme({
   palette: {
