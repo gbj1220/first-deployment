@@ -6,17 +6,15 @@ function useVerifyPassword() {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
 
   const handlePasswordOnChange = (e) => {
-    let passwordValue = e.target.value;
-    let passwordName = e.target.name;
-    setPassword(passwordValue);
+    setPassword(e.target.value);
 
-    if (isStrongPassword(passwordValue)) {
+    if (isStrongPassword(password)) {
       setPasswordError(false);
       setPasswordErrorMessage("");
     } else {
       setPasswordError(true);
       setPasswordErrorMessage(
-        `${passwordName} must include at least 8 characters, 1 lowercase letter, 1 uppercase letter, and 1 symbol. `
+        `Password must include at least 8 characters, 1 lowercase letter, 1 uppercase letter, and 1 symbol. `
       );
     }
   };

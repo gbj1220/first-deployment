@@ -2,21 +2,19 @@ import React, { useState, useContext } from "react";
 import { isEmail } from "validator";
 import { UserAuthorizationContext } from "../../components/context/AuthenticateUser";
 
-function useVerifyEmail() {
+function useVerifyEmail(e) {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
-
   const userAuthContext = useContext(UserAuthorizationContext);
 
   const handleEmail = (e) => {
-    let emailValue = e.target.value;
-    setEmail(emailValue);
+    setEmail(e.target.value);
 
-    if (isEmail(emailValue)) {
+    if (isEmail(email)) {
       setEmailError(false);
       setEmailErrorMessage("");
-    } else if (!isEmail(emailValue)) {
+    } else if (!isEmail(email)) {
       setEmailError(true);
       setEmailErrorMessage(
         "Email is not valid. Please register in order to access site."
@@ -25,8 +23,7 @@ function useVerifyEmail() {
       setEmailError(true);
       setEmailErrorMessage("Email already exists. Please Sign In.");
     }
-
-    return [email, handleEmail, emailError, emailErrorMessage];
   };
+  return [email, handleEmail, emailError, emailErrorMessage];
 }
 export default useVerifyEmail;

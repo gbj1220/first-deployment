@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
+import { NavLink } from "react-router-dom";
+import { UserAuthorizationContext } from "../context/AuthenticateUser";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,19 +20,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Header() {
+function Header(props) {
   const classes = useStyles();
+  const authContext = useContext(UserAuthorizationContext);
+
   return (
     <div className={classes.root} id='header'>
       <AppBar position='static'>
         <Toolbar>
-          <Typography
-            variant='h6'
-            className={classes.title}
-            style={{ textAlign: "center" }}
-          >
+          <Typography variant='h6' className={classes.title}>
             Task Manager
           </Typography>
+          <NavLink to='/sign-in'>
+            <Typography>
+              <Button>Sign In</Button>
+            </Typography>
+          </NavLink>
+          <NavLink to='sign-up'>
+            <Typography>
+              <Button>Sign Up</Button>
+            </Typography>
+          </NavLink>
         </Toolbar>
       </AppBar>
     </div>

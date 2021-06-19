@@ -4,7 +4,7 @@ import React, { useReducer, createContext } from "react";
 export const UserAuthorizationContext = createContext();
 
 const initialState = {
-  isAuth: FlareSharp,
+  isAuth: false,
   user: null,
 };
 
@@ -14,7 +14,7 @@ const reducer = (state, action) => {
       return {
         isAuth: true,
         user: {
-          email: action.user,
+          email: action.email,
         },
       };
 
