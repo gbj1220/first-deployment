@@ -43,7 +43,6 @@ function SignUp(props) {
   const classes = useStyles();
 
   const authContext = useContext(UserAuthorizationContext);
-  console.log(authContext);
 
   const [username, setUsername, userNameInputError, userNameInputErrorMessage] =
     useVerifyInput();

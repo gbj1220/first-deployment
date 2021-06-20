@@ -44,8 +44,6 @@ function Header(props) {
     window.location.reload();
   };
 
-  console.log(authContext);
-
   return (
     <div className={classes.root} id='header'>
       <AppBar position='static'>
