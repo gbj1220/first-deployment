@@ -81,7 +81,7 @@ function SignUp(props) {
     } else {
       props.history.push("/sign-up");
     }
-  }, []);
+  }, [props.history]);
 
   return (
     <div>

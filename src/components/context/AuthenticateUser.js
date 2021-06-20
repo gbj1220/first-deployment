@@ -1,5 +1,4 @@
-import { FlareSharp } from "@material-ui/icons";
-import React, { useReducer, createContext } from "react";
+import { useReducer, createContext } from "react";
 
 export const UserAuthorizationContext = createContext();
 

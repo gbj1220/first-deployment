@@ -1,4 +1,3 @@
-import React from "react";
 import jwtDecode from "jwt-decode";
 
 function useAuthenticateUser() {
@@ -11,7 +10,7 @@ function useAuthenticateUser() {
   };
 
   const removeToken = () => {
-    localStorage.removeItem("usersToken");
+    localStorage.removeItem("jwtToken");
   };
 
   const checkToken = () => {

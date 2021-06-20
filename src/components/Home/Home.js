@@ -1,27 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import TodoInput from "../Input/TodoInput";
 import TodoList from "../List/TodoList";
-import Header from "../Header/Header";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import teal from "@material-ui/core/colors/teal";
-import yellow from "@material-ui/core/colors/yellow";
-
 import { TodoInputContext, TodoListContext } from "../context/Context";
+import { UserAuthorizationContext } from "../context/AuthenticateUser";
+import useAuthenticateUser from "../Hooks/useAuthenticateUser";
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: teal[400],
-      secondary: yellow[200],
-    },
-  },
-  mainApp: {
-    margin: "auto",
-  },
-});
+function Home(props) {
+  const [checkToken] = useAuthenticateUser();
 
-function Home() {
   const initialTodos = window.localStorage.getItem("todos")
     ? JSON.parse(window.localStorage.getItem("todos"))
     : [];
@@ -44,28 +31,36 @@ function Home() {
     setTodoArray(newArray);
   };
 
-  const editTodo = () => {};
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  const authContext = useContext(UserAuthorizationContext);
+  console.log(authContext);
+
+  let token = checkToken();
 
   useEffect(() => {
     window.localStorage.setItem("todos", JSON.stringify(todoArray));
-  }, [todoArray]);
+    if (!token) {
+      props.history.push("/sign-in");
+    }
+  }, [todoArray, props.history, token]);
 
   return (
-    <div className='mainApp'>
-      <ThemeProvider theme={theme}>
-        <div className='App'>
-          <div className='todo-input-context'>
-            <TodoInputContext.Provider value={{ todoArray, addTodo }}>
-              <TodoInput />
-            </TodoInputContext.Provider>
-          </div>
-          <div className='todo-list-context'>
-            <TodoListContext.Provider value={{ todoArray, deleteTodoById }}>
-              <TodoList />
-            </TodoListContext.Provider>
-          </div>
+    <div className='mainApp' onSubmit={handleOnSubmit}>
+      <div className='App'>
+        <div className='todo-input-context'>
+          <TodoInputContext.Provider value={{ todoArray, addTodo }}>
+            <TodoInput />
+          </TodoInputContext.Provider>
         </div>
-      </ThemeProvider>
+        <div className='todo-list-context'>
+          <TodoListContext.Provider value={{ todoArray, deleteTodoById }}>
+            <TodoList />
+          </TodoListContext.Provider>
+        </div>
+      </div>
     </div>
   );
 }

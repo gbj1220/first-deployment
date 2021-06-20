@@ -4,8 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles({
   root: {
@@ -31,15 +29,31 @@ const useStyles = makeStyles({
     },
   },
 
-  todoAndButton: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginBottom: 25,
-  },
   paper: {
     fontSize: "20px",
+  },
+
+  deleteAndEditButtons: {
+    marginLeft: 20,
+  },
+
+  deleteBtn: {
+    marginBottom: "5px",
+  },
+
+  card: {
+    fontSize: "1.5em",
+    color: "blue",
+  },
+
+  todos: {
+    textAlign: "center",
+    width: 500,
+  },
+  todoAndButton: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
@@ -52,25 +66,34 @@ function TodoList() {
       {todoArray.map((item) => {
         return (
           <div className={classes.todoAndButton}>
-            <Card className={classes.root} variant='outlined'>
-              <Paper elevation={3}>{item.todo}</Paper>
-            </Card>
-            <Button
-              onClick={() => deleteTodoById(item.id)}
-              variant='contained'
-              color='primary'
-              size='small'
-            >
-              Delete Item
-            </Button>
-            <Button
-              type='submit'
-              variant='contained'
-              color='primary'
-              size='small'
-            >
-              Edit
-            </Button>
+            <div className={classes.card}>
+              <Card>
+                <CardContent className={classes.todos}>{item.todo}</CardContent>
+              </Card>
+            </div>
+
+            <div className={classes.deleteAndEditButtons}>
+              <div className={classes.deleteBtn}>
+                <Button
+                  onClick={() => deleteTodoById(item.id)}
+                  variant='contained'
+                  color='primary'
+                  size='small'
+                >
+                  Delete Item
+                </Button>
+              </div>
+              <div>
+                <Button
+                  type='submit'
+                  variant='contained'
+                  color='primary'
+                  size='small'
+                >
+                  Edit
+                </Button>
+              </div>
+            </div>
           </div>
         );
       })}

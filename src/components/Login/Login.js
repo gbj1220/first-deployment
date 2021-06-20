@@ -14,7 +14,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import useVerifyEmail from "../Hooks/useVerifyEmail";
-import useAuthenticateUser from "../Hooks/useAuthenticateUser";
 import useVerifyPassword from "../Hooks/useVerifyPassword";
 import { UserAuthorizationContext } from "../context/AuthenticateUser";
 import Axios from "../Axios/Axios";

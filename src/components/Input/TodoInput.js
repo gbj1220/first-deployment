@@ -4,7 +4,7 @@ import { Button, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  addTodoBtn: {
     "& > *": {
       margin: theme.spacing(1),
     },
@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     marginBottom: "25px",
     display: "flex",
-    justifyContent: "space-evenly",
     alignItems: "center",
+    justifyContent: "center",
   },
   inputField: {
     width: 500,
-    marginRight: -10,
+    marginRight: 20,
   },
 }));
 
@@ -47,7 +47,7 @@ function TodoInput() {
             onChange={(e) => setTodo(e.target.value)}
           ></TextField>
           <Button
-            className={classes.root}
+            className={classes.addTodoBtn}
             type='submit'
             variant='contained'
             color='primary'
